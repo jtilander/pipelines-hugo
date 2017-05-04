@@ -10,3 +10,5 @@ RUN apk add --no-cache --update wget ca-certificates && \
         tar xzf hugo_${HUGO_VERSION}_Linux-64bit.tar.gz && \
         rm -r hugo_${HUGO_VERSION}_Linux-64bit.tar.gz && \
         mv hugo*/hugo* /usr/bin/hugo
+
+RUN pip install --disable-pip-version-check --no-cache-dir pygments
