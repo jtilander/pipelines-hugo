@@ -11,3 +11,5 @@ RUN apk add --no-cache --virtual .gethugo curl && \
         mv hugo /usr/bin/hugo && \
         rm * && \
         apk del .gethugo
+
+RUN apk add --no-cache make rsync
