@@ -1,14 +1,13 @@
-FROM jtilander/dev-debug
+FROM alpine:3.12.0
 MAINTAINER Jim Tilander
+ENV HUGO_VERSION=0.74.3
 
-USER root
-
-ENV HUGO_VERSION=0.20.1
-RUN apk add --no-cache --update wget ca-certificates && \
+RUN apk add --no-cache --virtual .gethugo curl && \
         cd /tmp/ && \
-        wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz && \
-        tar xzf hugo_${HUGO_VERSION}_Linux-64bit.tar.gz && \
+        curl -SsL -O https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz && \
+        tar xvzf hugo_${HUGO_VERSION}_Linux-64bit.tar.gz && \
         rm -r hugo_${HUGO_VERSION}_Linux-64bit.tar.gz && \
-        mv hugo*/hugo* /usr/bin/hugo
-
-RUN pip install --disable-pip-version-check --no-cache-dir pygments
+        ls -alh /tmp && \
+        mv hugo /usr/bin/hugo && \
+        rm * && \
+        apk del .gethugo
