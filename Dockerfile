@@ -12,4 +12,4 @@ RUN apk add --no-cache --virtual .gethugo curl && \
         rm * && \
         apk del .gethugo
 
-RUN apk add --no-cache make rsync
+RUN apk add --no-cache make rsync openssh
